@@ -1,10 +1,7 @@
 <?php
 	Namespace Car;
-	
-	Use Closure;
-	
-		error_reporting ( E_ALL | E_STRICT );
-		ini_set ( 'display_errors', true );
+
+		Use Closure;
 
 		Interface FuelTankerInterface {
 			public function getFuel ( );
@@ -56,23 +53,32 @@
 			public $brand;
 			public $type;
 
-			public function drive ( ) {
+			public function setEngine ( EngineInterface $engine ) {
+				$this -> engine = $engine;
+			}
 
+			public function setFueltanker ( FuelTankerInterface $fueltanker ) {
+				$this -> fueltanker = $fueltanker;
+			}
+
+			public function getFuel ( ) {
+				echo $this -> fueltanker -> getFuel ( );
+			}
+
+			public function drive ( ) {
+				echo $this -> engine -> makeSound ( );
 			}
 
 		}
 
 		Class CarServiceProvider Implements CarServiceProviderInterface {
 			public static function register ( ) {
-				IoC :: bind ( 'FuelTanker', function ( ) {
-					return new FuelTanker;
-				} );
 				IoC :: bind ( 'Engine', function ( $type ) {
 					switch ($type) {
 						case 'diesel':
 							return new DieselEngine;
 							break;
-						case 'petro':
+						case 'petrol':
 							return new PetrolEngine;
 							break;
 						default:
@@ -82,11 +88,43 @@
 
 					return new Engine;
 				} );
-				IoC :: bind ( 'Car', function ( ) {
-					return new Car;
-				} );
-				IoC :: bind ( 'FuelTanker', function ( ) {
+
+				IoC :: bind ( 'FuelTanker', function ( $type ) {
+					switch ($type) {
+						case 'diesel':
+							return new DieselFuelTanker;
+							break;
+						case 'petrol':
+							return new PetrolFuelTanker;
+							break;
+						default:
+							Throw new Exception ( 'Fueltanker type must be diesel or petrol' );
+							break;
+					}
+
 					return new FuelTanker;
+				} );
+
+				IoC :: bind ( 'Car', function ( $type ) {
+					switch ($type) {
+						case 'diesel':
+							$engine = IoC :: make ( 'Engine', 'diesel' );
+							$fueltanker = IoC :: make ( 'FuelTanker', 'diesel' );
+							break;
+						case 'petrol':
+							$engine = IoC :: make ( 'Engine', 'petrol' );
+							$fueltanker = IoC :: make ( 'FuelTanker', 'petrol' );
+							break;
+						default:
+							Throw new Exception ( 'Car type must be diesel or petrol' );
+							break;
+					}
+
+					$car = new Car;
+					$car -> setEngine ( $engine );
+					$car -> setFueltanker ( $fueltanker );
+
+					return $car;
 				} );
 			}
 
@@ -124,10 +162,14 @@
 		try {
 			CarServiceProvider :: register ( );
 
-			$car = IoC :: make ( 'Car' );
+			$car = IoC :: make ( 'Car', 'diesel' );
 
 			echo '<pre style="font: 12px Edlo; color: purple;">';
-			print_r ( $car );
+			$car -> getFuel ( );
+			echo '</pre>';
+
+			echo '<pre style="font: 12px Edlo; color: purple;">';
+			$car -> drive ( );
 			echo '</pre>';
 		}
 		catch (Exception $e) {
