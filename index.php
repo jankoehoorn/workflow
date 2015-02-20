@@ -1,10 +1,10 @@
 <?php
-	print_r ( $_SERVER );
-	exit ;
-
 	Namespace Car;
-
+	
+	Use Closure;
+	
 		error_reporting ( E_ALL | E_STRICT );
+		ini_set ( 'display_errors', true );
 
 		Interface FuelTankerInterface {
 			public function getFuel ( );
@@ -22,33 +22,31 @@
 
 		}
 
-		Class FuelTanker Implements FuelTankerInterface {
-
-		}
-
-		Class DieselFuelTanker Extends FuelTanker {
+		Class DieselFuelTanker Implements FuelTankerInterface {
 			public function getFuel ( ) {
 				return 'Full tank of diesel';
 			}
 
 		}
 
-		Class PetrolFuelTanker Extends FuelTanker {
+		Class PetrolFuelTanker Implements FuelTankerInterface {
 			public function getFuel ( ) {
 				return 'Full tank of petrol';
 			}
 
 		}
 
-		Class Engine Implements EngineInterface {
-			private $type;
+		Class DieselEngine Implements EngineInterface {
+			public function makeSound ( ) {
+				return 'Deep diesel sound';
+			}
+
 		}
 
-		Class DieselEngine Extends Engine {
-
-		}
-
-		Class PetrolEngine Extends Engine {
+		Class PetrolEngine Implements EngineInterface {
+			public function makeSound ( ) {
+				return 'High petrol sound';
+			}
 
 		}
 
@@ -65,7 +63,7 @@
 		}
 
 		Class CarServiceProvider Implements CarServiceProviderInterface {
-			public function register ( ) {
+			public static function register ( ) {
 				IoC :: bind ( 'FuelTanker', function ( ) {
 					return new FuelTanker;
 				} );
