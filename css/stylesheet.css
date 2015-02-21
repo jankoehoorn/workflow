@@ -59,7 +59,7 @@
 	h3 							{ font-size: 16px; color: #aaa; margin-top: 16px; }
 	label, select, input, textarea,
 	p, li 						{ font-size: 14px; color: #999; }
-	pre 						{ font-size: 11px; color: #C24F4A; padding: 10px; border: 1px dotted #C24F4A; margin: 20px 0px; }
+	pre 						{ font: 12px Edlo; color: #C24F4A; padding: 10px; margin: 20px 0px; }
 	pre.assert 					{ color: #fff; background: #C24F4A; border-radius: 4px; }
 	li.case 					{ text-transform: capitalize; }
 	ul 							{ margin: 14px 20px 14px 0px; padding: 0px; list-style-type: disc; list-style-position: outside; }
