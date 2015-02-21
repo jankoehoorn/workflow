@@ -39,8 +39,7 @@
 			<header>
 				<h1>GitHub Workflow Casestudy</h1>
 			</header>
-			<nav>
-			</nav>
+			<nav></nav>
 
 			<div>
 				<section id="car">
@@ -48,18 +47,27 @@
 						try {
 							CarServiceProvider :: register ( );
 
-							$car = IoC :: make ( 'Car', 'diesel' );
+							$CarDiesel = IoC :: make ( 'Car', 'diesel' );
+							$CarPetrol = IoC :: make ( 'Car', 'petrol' );
+							$CarElectric = IoC :: make ( 'Car', 'electric' );
 
-							echo '<pre style="font: 12px Edlo; color: purple;">';
-							$car -> getFuel ( );
+							echo '<pre>';
+							$CarDiesel -> getFuel ( );
+							$CarDiesel -> drive ( );
 							echo '</pre>';
 
-							echo '<pre style="font: 12px Edlo; color: purple;">';
-							$car -> drive ( );
+							echo '<pre>';
+							$CarPetrol -> getFuel ( );
+							$CarPetrol -> drive ( );
+							echo '</pre>';
+
+							echo '<pre>';
+							$CarElectric -> getFuel ( );
+							$CarElectric -> drive ( );
 							echo '</pre>';
 						}
 						catch (Exception $e) {
-							echo '<pre style="font: 12px Edlo; color: purple;">';
+							echo '<pre>';
 							print_r ( $e );
 							echo '</pre>';
 						}

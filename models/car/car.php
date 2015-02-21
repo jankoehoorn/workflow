@@ -4,7 +4,10 @@
 		Use Closure;
 
 		Interface CarInterface {
-
+			public function setEngine ( EngineInterface $engine );
+			public function setFueltanker ( FuelTankerInterface $fueltanker );
+			public function getFuel ( );
+			public function drive ( );
 		}
 
 		Class Car Implements CarInterface {

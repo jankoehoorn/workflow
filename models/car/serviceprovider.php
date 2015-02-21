@@ -2,6 +2,7 @@
 	Namespace Car;
 
 		Use Closure;
+		Use Exception;
 
 		Interface CarServiceProviderInterface {
 			public static function register ( );
@@ -31,7 +32,7 @@
 				IoC :: bind ( 'FuelTanker', function ( $type ) {
 					switch ($type) {
 						case 'electric':
-							return new ElectricFuelTanker;
+							return new ElectricityFuelTanker;
 							break;
 						case 'diesel':
 							return new DieselFuelTanker;
@@ -40,7 +41,7 @@
 							return new PetrolFuelTanker;
 							break;
 						default:
-							Throw new Exception ( 'Fueltanker type must be diesel or petrol' );
+							Throw new Exception ( 'Fueltanker type must be electric, diesel or petrol' );
 							break;
 					}
 
@@ -49,6 +50,10 @@
 
 				IoC :: bind ( 'Car', function ( $type ) {
 					switch ($type) {
+						case 'electric':
+							$engine = IoC :: make ( 'Engine', 'electric' );
+							$fueltanker = IoC :: make ( 'FuelTanker', 'electric' );
+							break;
 						case 'diesel':
 							$engine = IoC :: make ( 'Engine', 'diesel' );
 							$fueltanker = IoC :: make ( 'FuelTanker', 'diesel' );
@@ -58,7 +63,7 @@
 							$fueltanker = IoC :: make ( 'FuelTanker', 'petrol' );
 							break;
 						default:
-							Throw new Exception ( 'Car type must be diesel or petrol' );
+							Throw new Exception ( 'Car type must be electric, diesel or petrol' );
 							break;
 					}
 

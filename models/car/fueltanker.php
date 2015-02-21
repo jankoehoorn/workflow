@@ -9,21 +9,21 @@
 
 		Class DieselFuelTanker Implements FuelTankerInterface {
 			public function getFuel ( ) {
-				return 'Full tank of diesel';
+				return '<p>Tanking... tank is full of diesel</p>';
 			}
 
 		}
 
 		Class PetrolFuelTanker Implements FuelTankerInterface {
 			public function getFuel ( ) {
-				return 'Full tank of petrol';
+				return '<p>Tanking... tank is full of petrol</p>';
 			}
 
 		}
 
 		Class ElectricityFuelTanker Implements FuelTankerInterface {
 			public function getFuel ( ) {
-				return 'Batteries are fully charged';
+				return '<p>Charging... batteries are fully charged</p>';
 			}
 
 		}
