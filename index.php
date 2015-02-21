@@ -50,6 +50,16 @@
 							$CarDiesel = IoC :: make ( 'Car', 'diesel' );
 							$CarPetrol = IoC :: make ( 'Car', 'petrol' );
 							$CarElectric = IoC :: make ( 'Car', 'electric' );
+							$CarHybrid = IoC :: make ( 'Car', 'hybrid' );
+
+							$EnginePetrol = IoC :: make ( 'Engine', 'petrol' );
+							$EnginePetrol -> setFuelTanker ( IoC :: make ( 'FuelTanker', 'petrol' ) );
+							$CarHybrid -> setEngine ( $EnginePetrol );
+							$EngineElectric = IoC :: make ( 'Engine', 'electric' );
+							$EngineElectric -> setFuelTanker ( IoC :: make ( 'FuelTanker', 'electric' ) );
+							$CarHybrid -> setEngine ( $EngineElectric );
+
+							s ( $CarHybrid );
 
 							echo '<pre>';
 							$CarDiesel -> getFuel ( );

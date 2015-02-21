@@ -4,24 +4,32 @@
 		Use Closure;
 
 		Interface EngineInterface {
-			public function makeSound ( );
 		}
 
-		Class DieselEngine Implements EngineInterface {
+		Abstract Class Engine Implements EngineInterface {
+			private $fueltanker;
+			
+			public function setFuelTanker ( FuelTankerInterface $FuelTankerInterface ) {
+				$this -> fueltanker = $FuelTankerInterface;
+			}
+
+		}
+
+		Class DieselEngine Extends Engine {
 			public function makeSound ( ) {
 				return 'Deep diesel sound';
 			}
 
 		}
 
-		Class PetrolEngine Implements EngineInterface {
+		Class PetrolEngine Extends Engine {
 			public function makeSound ( ) {
 				return 'High petrol sound';
 			}
 
 		}
 
-		Class ElectricEngine Implements EngineInterface {
+		Class ElectricEngine Extends Engine {
 			public function makeSound ( ) {
 				return 'Soft electric buzzing sound';
 			}
