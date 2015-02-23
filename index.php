@@ -14,7 +14,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="description" content="" />
@@ -23,7 +22,6 @@
 
 		<title>GitHub Workflow Casestudy</title>
 
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
