@@ -4,7 +4,7 @@
 	require_once 'models/ioc/ioc.php';
 	require_once 'models/car/car.php';
 	require_once 'models/car/engine.php';
-	require_once 'models/car/fueltanker.php';
+	require_once 'models/car/fueltank.php';
 	require_once 'models/car/serviceprovider.php';
 
 	Use Car\CarServiceProvider;
@@ -51,10 +51,10 @@
 							$CarHybrid = IoC :: make ( 'Car', 'hybrid' );
 
 							$EnginePetrol = IoC :: make ( 'Engine', 'petrol' );
-							$EnginePetrol -> setFuelTanker ( IoC :: make ( 'FuelTanker', 'petrol' ) );
+							$EnginePetrol -> setFuelTank ( IoC :: make ( 'FuelTank', 'petrol' ) );
 							$CarHybrid -> setEngine ( $EnginePetrol );
 							$EngineElectric = IoC :: make ( 'Engine', 'electric' );
-							$EngineElectric -> setFuelTanker ( IoC :: make ( 'FuelTanker', 'electric' ) );
+							$EngineElectric -> setFuelTank ( IoC :: make ( 'FuelTank', 'electric' ) );
 							$CarHybrid -> setEngine ( $EngineElectric );
 
 							s ( $CarHybrid );

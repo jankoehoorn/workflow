@@ -5,13 +5,13 @@
 
 		Interface CarInterface {
 			public function setEngine ( EngineInterface $engine );
-			public function setFueltanker ( FuelTankerInterface $fueltanker );
+			public function setFuelTank ( FuelTankInterface $fueltank );
 			public function getFuel ( );
 			public function drive ( );
 		}
 
 		Class Car Implements CarInterface {
-			private $fueltanker;
+			private $fueltank;
 			private $engine;
 			public $brand;
 			public $type;
@@ -20,12 +20,12 @@
 				$this -> engine = $EngineInterface;
 			}
 
-			public function setFueltanker ( FuelTankerInterface $FuelTankerInterface ) {
-				$this -> engine -> fueltanker = $FuelTankerInterface;
+			public function setFuelTank ( FuelTankInterface $FuelTankInterface ) {
+				$this -> engine -> fueltank = $FuelTankInterface;
 			}
 
 			public function getFuel ( ) {
-				echo $this -> engine -> fueltanker -> getFuel ( );
+				echo $this -> engine -> fueltank -> getFuel ( );
 			}
 
 			public function drive ( ) {

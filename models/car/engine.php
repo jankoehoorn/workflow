@@ -9,8 +9,8 @@
 		Abstract Class Engine Implements EngineInterface {
 			private $fueltanker;
 			
-			public function setFuelTanker ( FuelTankerInterface $FuelTankerInterface ) {
-				$this -> fueltanker = $FuelTankerInterface;
+			public function setFuelTank ( FuelTankInterface $FuelTankInterface ) {
+				$this -> fueltanker = $FuelTankInterface;
 			}
 
 		}

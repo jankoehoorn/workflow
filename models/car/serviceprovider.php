@@ -17,15 +17,15 @@
 							break;
 						case 'electric':
 							$engine = IoC :: make ( 'Engine', 'electric' );
-							$fueltanker = IoC :: make ( 'FuelTanker', 'electric' );
+							$fueltanker = IoC :: make ( 'FuelTank', 'electric' );
 							break;
 						case 'diesel':
 							$engine = IoC :: make ( 'Engine', 'diesel' );
-							$fueltanker = IoC :: make ( 'FuelTanker', 'diesel' );
+							$fueltanker = IoC :: make ( 'FuelTank', 'diesel' );
 							break;
 						case 'petrol':
 							$engine = IoC :: make ( 'Engine', 'petrol' );
-							$fueltanker = IoC :: make ( 'FuelTanker', 'petrol' );
+							$fueltanker = IoC :: make ( 'FuelTank', 'petrol' );
 							break;
 						default:
 							Throw new Exception ( 'Car type must be hybrid, electric, diesel or petrol' );
@@ -34,7 +34,7 @@
 
 					$car = new Car;
 					$car -> setEngine ( $engine );
-					$car -> setFueltanker ( $fueltanker );
+					$car -> setFuelTank ( $fueltanker );
 
 					return $car;
 				} );
@@ -58,23 +58,23 @@
 					return new Engine;
 				} );
 
-				IoC :: bind ( 'FuelTanker', function ( $type ) {
+				IoC :: bind ( 'FuelTank', function ( $type ) {
 					switch ($type) {
 						case 'electric':
-							return new ElectricityFuelTanker;
+							return new ElectricityFuelTank;
 							break;
 						case 'diesel':
-							return new DieselFuelTanker;
+							return new DieselFuelTank;
 							break;
 						case 'petrol':
-							return new PetrolFuelTanker;
+							return new PetrolFuelTank;
 							break;
 						default:
 							Throw new Exception ( 'Fueltanker type must be electric, diesel or petrol' );
 							break;
 					}
 
-					return new FuelTanker;
+					return new FuelTank;
 				} );
 
 			}

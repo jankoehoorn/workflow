@@ -2,7 +2,7 @@
 	Namespace Car;
 
 		Use Closure;
-
+		Use Exception;
 
 		Interface IoCInterface {
 			public static function bind ( $name, Closure $Closure );
