@@ -1,6 +1,11 @@
 <?php
 	Namespace Car;
 
+		require 'models/ioc/ioc.php';
+		require 'engine.php';
+		require 'fueltank.php';
+		require 'serviceprovider.php';
+
 		Use Closure;
 
 		Interface CarInterface {
@@ -38,7 +43,7 @@
 			private $engines = array ( );
 
 			public function setEngine ( EngineInterface $EngineInterface ) {
-				$this -> engines[] = $EngineInterface;
+				$this -> engines[ ] = $EngineInterface;
 			}
 
 		}

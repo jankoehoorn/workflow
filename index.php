@@ -1,11 +1,7 @@
 <?php
 	require_once 'elements/debug.php';
 	require_once 'kint/Kint.class.php';
-	require_once 'models/ioc/ioc.php';
 	require_once 'models/car/car.php';
-	require_once 'models/car/engine.php';
-	require_once 'models/car/fueltank.php';
-	require_once 'models/car/serviceprovider.php';
 
 	Use Car\CarServiceProvider;
 	Use Car\IoC;
